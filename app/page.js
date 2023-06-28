@@ -42,7 +42,7 @@ export default function Home() {
 
 // console.log({events});
 
-const data = useSelector(state => state.websocket);
+const data = useSelector(state => state.events);
 
 useEffect(() => {
   dispatch(connectWebSocket());
