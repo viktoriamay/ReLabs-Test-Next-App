@@ -28,9 +28,9 @@ export const Header = () => {
             </Link>
           </ListItem>
           <ListItem>
-            <Link passHref legacyBehavior href={'/authorization'}>
+            <Link passHref legacyBehavior href={'/login'}>
               <StyledLink
-              className={pathname == '/authorization' ? 'active' : ''}
+              className={pathname == '/login' ? 'active' : ''}
 
               >
                 Авторизация

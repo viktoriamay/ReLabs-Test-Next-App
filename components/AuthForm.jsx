@@ -7,9 +7,9 @@ import { CircularProgress } from '@mui/material';
 
 export const VALIDATE_CONFIG = {
   requiredMessage: 'Обязательное поле',
-  email: 'Невалидный формат email',
+  email: 'Некорректный адрес электронной почты',
   password:
-    'Пароль должен содержать минимум 8 символов, одну заглавную букву и не содержать пробелов',
+    'Пароль должен содержать не менее 8 символов, одну заглавную букву и не содержать пробелы',
 };
 
 export const EMAIL_REGEXP =
@@ -71,7 +71,7 @@ export const AuthForm = () => {
 
   return (
     <>
-    <CircularProgress size={100} color="secondary" />
+{ isLoading &&   <CircularProgress size={100} color="secondary" />}
       <form
         onSubmit={handleSubmit(registrationRequest)}
         className="form__modals"
@@ -80,28 +80,38 @@ export const AuthForm = () => {
         <fieldset
           ref={ref}
         >
+        <label htmlFor='email'>
+        * Электронная почта
+        </label>
+
           <input
             {...emailRegister}
             type="email"
             name="email"
-            placeholder="Email"
+            placeholder="email@email.email"
             className="form__input"
+            id='email'
           />
           {errors.email && (
             <span className="form__errors">{errors?.email?.message}</span>
           )}
+          <label htmlFor='password'>
+          * Пароль
+        </label>
+
           <input
             {...passwordRegister}
             type="password"
             name="password"
-            placeholder="Пароль"
+            placeholder="********"
             className="form__input"
+            id='password'
           />
           {errors.password && (
             <span className="form__errors">{errors?.password?.message}</span>
           )}
 
-          <button className="auth__navigation">Вход</button>
+          <button type='submit' className="auth__navigation">Авторизация</button>
         </fieldset>
       </form>
     </>

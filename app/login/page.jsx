@@ -1,10 +1,10 @@
 import { AuthForm } from "@/components/AuthForm";
 
-export default function About () {
+export default function Authorization () {
   return (
     <>
 
-    {/* <h1>HELLO</h1> */}
+    <h1>Авторизация</h1>
     <AuthForm />
     </>
   )
