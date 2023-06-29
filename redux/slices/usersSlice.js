@@ -6,7 +6,7 @@ const initialState = {
 };
 
 export const fetchUsers = createAsyncThunk(
-  'users/fetchUsers',
+  'users/fetchUsers', 
   async ({ limit, offset }) => {
     const response =
       await fetch(`https://test.relabs.ru/api/users/list?limit=${limit}&offset=${offset}

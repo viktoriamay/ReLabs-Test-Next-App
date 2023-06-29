@@ -6,8 +6,8 @@ import { connectWebSocket } from '@/redux/slices/eventsSlice';
 import { disconnectWebSocket } from '@/redux/slices/eventsSlice';
 import { UsersTable } from '@/components/UsersTable';
 import { EventsTable } from '@/components/EventsTable';
-import { CircularProgress } from '@mui/material';
-import { Container, UsersLoader, TablesWrapper } from '@/styledComponents/styledComponents';
+import { CircularProgress, Pagination } from '@mui/material';
+import { Container, UsersLoader, TablesWrapper, UsersTableWrapper } from '@/styledComponents/styledComponents';
 
 export default function Home() {
   const [pageLimit, setPageLimit] = useState(5);
@@ -40,7 +40,7 @@ export default function Home() {
     return `${day}.${month}.${year} ${hours}:${minutes}`;
   }
 
-  const handlePaginationChange = (page) => {
+  const handlePaginationChange = (event, page) => {
     setPageOffset((page - 1) * pageLimit);
     setCurrentPage(page);
   };
@@ -60,15 +60,24 @@ export default function Home() {
         <>
           <Container>
           <TablesWrapper>
+<UsersTableWrapper>
 
             <UsersTable
               users={users}
               deleteUsr={deleteUsr}
               formatDate={formatDate}
-              pageLimit={pageLimit}
-              currentPage={currentPage}
-              handlePaginationChange={handlePaginationChange}
+              // pageLimit={pageLimit}
+              // pageOffset={pageOffset}
+              // currentPage={currentPage}
+              // handlePaginationChange={handlePaginationChange}
             />
+            <Pagination
+        count={Math.ceil(Number(users.total) / Number(pageLimit))}
+        page={currentPage}
+        onChange={handlePaginationChange}
+        color="secondary"
+      />
+</UsersTableWrapper>
             <EventsTable events={events} formatDate={formatDate} />
           </TablesWrapper>
           </Container>

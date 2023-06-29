@@ -4,7 +4,7 @@
 import { TableTitle, UsersTableWrapper } from "@/styledComponents/styledComponents";
 import { Button, Pagination, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
 
-export const UsersTable = ({users, deleteUsr, formatDate, pageLimit, currentPage, handlePaginationChange}) => {
+export const UsersTable = ({ users, deleteUsr, formatDate}) => {
 
 
   
@@ -48,12 +48,12 @@ export const UsersTable = ({users, deleteUsr, formatDate, pageLimit, currentPage
           </TableBody>
         </Table>
       </TableContainer>
-      <Pagination
+      {/* <Pagination
         count={Math.ceil(Number(users?.total) / Number(pageLimit))}
         page={currentPage}
-        onChange={handlePaginationChange}
+        onChange={()=>handlePaginationChange(currentPage)}
         color="secondary"
-      />
+      /> */}
     </UsersTableWrapper>
   )
 }
