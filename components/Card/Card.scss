@@ -1,0 +1,145 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  border-radius: 16px;
+  box-shadow: 2px 2px 25px #00000010, -2px -2px 25px #00000010;
+
+  &__image_wrapper {
+    position: relative;
+    width: 100%;
+    height: 350px;
+    padding-top: 30px;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    &:hover .card__view__wrapper {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  &__info_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.88rem;
+  }
+
+  &__discount {
+    position: absolute;
+    left: 20px;
+    bottom: 0;
+    padding: 0.1rem 0.4rem;
+    background-color: #fdeef9;
+    color: #cb11ab;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  &__view__wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.1s ease;
+  }
+
+  &__view {
+    padding: 0.6rem 0.8rem;
+    background-color: #ffffffd0;
+    border-radius: 30px;
+    border: none;
+    cursor: pointer;
+  }
+
+  &__price__wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 6px;
+  }
+
+  &__price_new {
+    font-weight: 700;
+    font-size: 18px;
+  }
+
+  &__price_old {
+    font-weight: 700;
+    color: gray;
+    text-decoration: line-through;
+  }
+
+  &__price_bank__wrapper {
+    margin-bottom: 6px;
+  }
+
+  &__price_bank {
+    font-weight: 700;
+    color: #cb11ab;
+  }
+
+  &__name {
+    color: gray;
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+
+  &__rating_wrapper {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
+  &__rating_stars_wrapper {
+    display: flex;
+    gap: 3px;
+  }
+
+  &__promo {
+    display: inline-block;
+    padding: 0.5rem 0.8rem;
+    margin-bottom: 14px;
+    background: linear-gradient(70deg, #d1ffec, #ecff4c);
+    border-radius: 30px;
+    text-transform: uppercase;
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  &__buttons_wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 16px;
+  }
+
+  &__button_cart {
+    background-color: #cb11ab;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    color: #fdeef9;
+    font-weight: 800;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.1s ease;
+
+    &:hover {
+      background-color: #c211a4;
+    }
+  }
+}
