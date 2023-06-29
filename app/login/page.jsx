@@ -1,11 +1,22 @@
+'use client'
+
 import { AuthForm } from "@/components/AuthForm";
+import { Container, TableTitle } from "@/styledComponents/styledComponents";
 
 export default function Authorization () {
   return (
     <>
 
-    <h1>Авторизация</h1>
+<div style={{width : '100%',height:'100%' ,display: 'flex', alignItems: "center", justifyContent: 'center'}}>
+<Container>
+<div>
+
+
+    <TableTitle>Авторизация</TableTitle>
     <AuthForm />
+</div>
+</Container>
+</div>
     </>
   )
 }

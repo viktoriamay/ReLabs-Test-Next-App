@@ -3,7 +3,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
-import { CircularProgress } from '@mui/material';
+import { Button, CircularProgress, InputLabel, TextField } from '@mui/material';
+import { Container, FormLoader, FormWrapper } from '@/styledComponents/styledComponents';
 
 export const VALIDATE_CONFIG = {
   requiredMessage: 'Обязательное поле',
@@ -25,6 +26,7 @@ export const AuthForm = () => {
   } = useForm({ mode: 'onChange' });
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
 
   const router = useRouter();
 
@@ -49,71 +51,95 @@ export const AuthForm = () => {
       message: VALIDATE_CONFIG.password,
     },
   });
-  const ref = useRef(null);
 
-
-  useEffect(() => {
-    const element = ref.current.disabled;
-  }, []);
 
   const registrationRequest = (data) => {
     setIsLoading(true);
-    ref.current.disabled = true;
+    // ref.current.disabled = true;
+    setIsDisabled(true);
     setTimeout(() => {
       setIsLoading(false);
-      ref.current.disabled = false;
+      // ref.current.disabled = false;
+      setIsDisabled(false);
       // redirect to home page
       router.push('/');
     }, 2000);
   };
 
-  
-
   return (
     <>
-{ isLoading &&   <CircularProgress size={100} color="secondary" />}
-      <form
-        onSubmit={handleSubmit(registrationRequest)}
-        className="form__modals"
-        title="Регистрация"
-      >
-        <fieldset
-          ref={ref}
-        >
-        <label htmlFor='email'>
-        * Электронная почта
-        </label>
+      {isLoading && 
+      <FormLoader>
 
-          <input
-            {...emailRegister}
-            type="email"
-            name="email"
-            placeholder="email@email.email"
-            className="form__input"
-            id='email'
-          />
-          {errors.email && (
-            <span className="form__errors">{errors?.email?.message}</span>
-          )}
-          <label htmlFor='password'>
-          * Пароль
-        </label>
+      <CircularProgress size={100} color="secondary" />
+      </FormLoader> 
+      }
 
-          <input
-            {...passwordRegister}
-            type="password"
-            name="password"
-            placeholder="********"
-            className="form__input"
-            id='password'
-          />
-          {errors.password && (
-            <span className="form__errors">{errors?.password?.message}</span>
-          )}
+      <form  onSubmit={handleSubmit(registrationRequest)}>
+        <FormWrapper>
+          <div>
+            <InputLabel
+              sx={{
+                marginBottom: '0.5rem',
+              }}
+              htmlFor="email"
+            >
+              * Электронная почта
+            </InputLabel>
+            <TextField
+              disabled={isDisabled}
+              sx={{
+                width: 500,
+              }}
+              error={!!errors?.email}
+              id="email"
+              {...emailRegister}
+              type="email"
+              name="email"
+              placeholder="email@email.email"
+              helperText={errors?.email?.message}
+            />
+          </div>
+          <div>
+            <InputLabel
+              sx={{
+                marginBottom: '0.5rem',
+              }}
+              htmlFor="password"
+            >
+              * Пароль
+            </InputLabel>
+            <TextField
+              disabled={isDisabled}
+              sx={{
+                width: 500,
+              }}
+              {...passwordRegister}
+              type="password"
+              name="password"
+              placeholder="********"
+              className="form__input"
+              id="password"
+              error={!!errors?.password}
+              helperText={errors?.password?.message}
+            />
+          </div>
 
-          <button type='submit' className="auth__navigation">Авторизация</button>
-        </fieldset>
+          <Button
+            size="large"
+            variant="contained"
+            color="secondary"
+            type="submit"
+            sx={{
+              textTransform: 'capitalize',
+              marginTop: '1.2rem'
+            }}
+          >
+            Авторизация
+          </Button>
+        </FormWrapper>
       </form>
+
     </>
   );
 };
