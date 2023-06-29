@@ -7,7 +7,6 @@ import {
   HeaderComponent,
   StyledLink,
 } from '@/styledComponents/styledComponents';
-// import { Link } from '@mui/material';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -20,28 +19,21 @@ export const Header = () => {
         <LinksWrapper>
           <ListItem>
             <Link passHref legacyBehavior href={'/'}>
-              <StyledLink       
-              className={pathname == '/' ? 'active' : ''}
->
+              <StyledLink className={pathname == '/' ? 'active' : ''}>
                 Главная страница
               </StyledLink>
             </Link>
           </ListItem>
           <ListItem>
             <Link passHref legacyBehavior href={'/login'}>
-              <StyledLink
-              className={pathname == '/login' ? 'active' : ''}
-
-              >
+              <StyledLink className={pathname == '/login' ? 'active' : ''}>
                 Авторизация
               </StyledLink>
             </Link>
           </ListItem>
           <ListItem>
             <Link passHref legacyBehavior href={'/shop'}>
-              <StyledLink 
-              className={pathname == '/shop' ? 'active' : ''}
-              >
+              <StyledLink className={pathname == '/shop' ? 'active' : ''}>
                 Магазин
               </StyledLink>
             </Link>

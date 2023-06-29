@@ -7,7 +7,12 @@ import { disconnectWebSocket } from '@/redux/slices/eventsSlice';
 import { UsersTable } from '@/components/UsersTable';
 import { EventsTable } from '@/components/EventsTable';
 import { CircularProgress, Pagination } from '@mui/material';
-import { Container, UsersLoader, TablesWrapper, UsersTableWrapper } from '@/styledComponents/styledComponents';
+import {
+  Container,
+  UsersLoader,
+  TablesWrapper,
+  UsersTableWrapper,
+} from '@/styledComponents/styledComponents';
 
 export default function Home() {
   const [pageLimit, setPageLimit] = useState(5);
@@ -53,33 +58,27 @@ export default function Home() {
     <main>
       {loading ? (
         <UsersLoader>
-
-      <CircularProgress size={100} color="secondary" />
-      </UsersLoader> 
+          <CircularProgress size={100} color="secondary" />
+        </UsersLoader>
       ) : (
         <>
           <Container>
-          <TablesWrapper>
-<UsersTableWrapper>
-
-            <UsersTable
-              users={users}
-              deleteUsr={deleteUsr}
-              formatDate={formatDate}
-              // pageLimit={pageLimit}
-              // pageOffset={pageOffset}
-              // currentPage={currentPage}
-              // handlePaginationChange={handlePaginationChange}
-            />
-            <Pagination
-        count={Math.ceil(Number(users.total) / Number(pageLimit))}
-        page={currentPage}
-        onChange={handlePaginationChange}
-        color="secondary"
-      />
-</UsersTableWrapper>
-            <EventsTable events={events} formatDate={formatDate} />
-          </TablesWrapper>
+            <TablesWrapper>
+              <UsersTableWrapper>
+                <UsersTable
+                  users={users}
+                  deleteUsr={deleteUsr}
+                  formatDate={formatDate}
+                />
+                <Pagination
+                  count={Math.ceil(Number(users.total) / Number(pageLimit))}
+                  page={currentPage}
+                  onChange={handlePaginationChange}
+                  color="secondary"
+                />
+              </UsersTableWrapper>
+              <EventsTable events={events} formatDate={formatDate} />
+            </TablesWrapper>
           </Container>
         </>
       )}

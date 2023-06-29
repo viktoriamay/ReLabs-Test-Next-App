@@ -1,10 +1,10 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { Button, CircularProgress, InputLabel, TextField } from '@mui/material';
-import { Container, FormLoader, FormWrapper } from '@/styledComponents/styledComponents';
+import { FormLoader, FormWrapper } from '@/styledComponents/styledComponents';
 
 export const VALIDATE_CONFIG = {
   requiredMessage: 'Обязательное поле',
@@ -52,30 +52,25 @@ export const AuthForm = () => {
     },
   });
 
-
-  const registrationRequest = (data) => {
+  const registrationRequest = () => {
     setIsLoading(true);
-    // ref.current.disabled = true;
     setIsDisabled(true);
     setTimeout(() => {
       setIsLoading(false);
-      // ref.current.disabled = false;
       setIsDisabled(false);
-      // redirect to home page
       router.push('/');
     }, 2000);
   };
 
   return (
     <>
-      {isLoading && 
-      <FormLoader>
+      {isLoading && (
+        <FormLoader>
+          <CircularProgress size={100} color="secondary" />
+        </FormLoader>
+      )}
 
-      <CircularProgress size={100} color="secondary" />
-      </FormLoader> 
-      }
-
-      <form  onSubmit={handleSubmit(registrationRequest)}>
+      <form onSubmit={handleSubmit(registrationRequest)}>
         <FormWrapper>
           <div>
             <InputLabel
@@ -132,14 +127,13 @@ export const AuthForm = () => {
             type="submit"
             sx={{
               textTransform: 'capitalize',
-              marginTop: '1.2rem'
+              marginTop: '1.2rem',
             }}
           >
             Авторизация
           </Button>
         </FormWrapper>
       </form>
-
     </>
   );
 };
