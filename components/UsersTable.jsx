@@ -64,5 +64,6 @@ export const UsersTable = ({ users, deleteUsr, formatDate }) => {
         </Table>
       </TableContainer>
     </UsersTableWrapper>
+    
   );
 };
